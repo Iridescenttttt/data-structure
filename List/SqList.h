@@ -11,21 +11,12 @@ struct SqList {
     int length;
 };
 
-/**
- * @brief Init the list.
- * 
- */
 void InitList(SqList &L) {
     L.data = new int[InitSize];
     L.MaxSize = InitSize;
     L.length = 0;
 }
 
-/**
- * @brief Increase the list length.
- * 
- * @param size increase size.
- */
 void IncreaseList(SqList &L, int size) {
     int *p = L.data;
     L.data = new int[InitSize + size];
@@ -36,12 +27,6 @@ void IncreaseList(SqList &L, int size) {
     delete []p;
 }
 
-/**
- * @brief Insert element to list.
- * 
- * @param pos insert position
- * @param e element
- */
 void ListInsert(SqList &L, int pos, int e) {
     if(pos < 1 || pos > L.length + 1)cout<<"Please input the right postion!"<<endl;
     if(L.length == L.MaxSize) IncreaseList(L, 5);
@@ -52,12 +37,6 @@ void ListInsert(SqList &L, int pos, int e) {
     L.length++;
 }
 
-/**
- * @brief Delete the element at the corresponding position.
- * 
- * @param pos position
- * @return int deleted element
- */
 int ListDelete(SqList &L, int pos) {
     if(pos < 1 || pos > L.length)cout<<"Please input the right postion!"<<endl;
     int ret = L.data[pos - 1];
@@ -68,23 +47,11 @@ int ListDelete(SqList &L, int pos) {
     return ret;
 }
 
-/**
- * @brief Get the Elem object.
- * 
- * @param pos position
- * @return int element
- */
 int GetElem(SqList &L, int pos) {
     if(pos < 1 || pos > L.length)cout<<"Please input the right postion!"<<endl;
     return L.data[pos - 1];
 }
 
-/**
- * @brief Find the element position
- * 
- * @param val value
- * @return int position
- */
 int LocateElem(SqList L, int val) {
     for(int i = 0; i < L.length; i++){
         if(L.data[i] == val)return i + 1;
