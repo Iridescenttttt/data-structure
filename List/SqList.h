@@ -28,7 +28,7 @@ void IncreaseList(SqList &L, int size) {
 }
 
 void ListInsert(SqList &L, int pos, int e) {
-    if(pos < 1 || pos > L.length + 1)cout<<"Please input the right postion!"<<endl;
+    if(pos < 1 || pos > L.length + 1)cout<<"Please input the right postion!"<<endl;                 //e是从1开始的
     if(L.length == L.MaxSize) IncreaseList(L, 5);
     for(int i = L.length + 1; i >= pos; i--){
         L.data[i] = L.data[i - 1];
@@ -37,14 +37,15 @@ void ListInsert(SqList &L, int pos, int e) {
     L.length++;
 }
 
-int ListDelete(SqList &L, int pos) {
+bool ListDelete(SqList &L, int pos, int &e) {
     if(pos < 1 || pos > L.length)cout<<"Please input the right postion!"<<endl;
-    int ret = L.data[pos - 1];
+    if(L.length == 0)return false;
+    e = L.data[pos - 1];
     for(int i = pos; i < L.length; i++){
         L.data[i - 1] = L.data[i];
     }
     L.length--;
-    return ret;
+    return true;
 }
 
 int GetElem(SqList &L, int pos) {
